@@ -1,4 +1,4 @@
-name: fetch-repository-stats
+name: my-repo-stats-ghrs
 concurrency: fetch-repository-stats
 
 on:
