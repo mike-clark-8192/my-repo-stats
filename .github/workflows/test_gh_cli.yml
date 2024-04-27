@@ -1,4 +1,4 @@
-name: Test GitHub CLI Availability
+name: Test GitHub CLI with GH_TOKEN
 
 on:
   workflow_dispatch:  # This allows you to trigger the action manually from GitHub UI
@@ -13,3 +13,5 @@ jobs:
       - name: List Public Non-Fork Repositories
         run: |
           gh repo list --json nameWithOwner,visibility,isFork -q '[.[] | select(.visibility=="PUBLIC" and .isFork==false) | .nameWithOwner]'
+        env:
+          GH_TOKEN: ${{ github.token }}  # Set GH_TOKEN to use github.token for GitHub CLI
