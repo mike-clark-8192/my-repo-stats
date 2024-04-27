@@ -1,0 +1,41 @@
+name: fetch-repository-stats
+concurrency: fetch-repository-stats
+
+on:
+  schedule:
+    - cron: "0 10 * * 6"
+  workflow_dispatch:
+
+jobs:
+  fetch-repos:
+    runs-on: ubuntu-latest
+    outputs:
+      repos: ${{ steps.fetch-repos.outputs.repos }}
+    steps:
+      - name: Fetch owned non-fork repos
+        id: fetch-repos
+        env:
+          GH_TOKEN: ${{ secrets.ghrs_github_api_token  }}  # Set GH_TOKEN to use github.token for GitHub CLI
+        run: |
+          set -x -e
+          echo 'Fetching repositories...'
+          REPOS=$(gh repo list --json nameWithOwner,visibility,isFork -q '[.[] | select(.visibility=="PUBLIC" and .isFork==false) | .nameWithOwner]')
+          echo "repos=$REPOS" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+  run-ghrs-with-matrix:
+    needs: fetch-repos
+    name: my-repo-stats-ghrs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        statsRepo: ${{ fromJson(needs.fetch-repos.outputs.repos) }}
+      fail-fast: false
+    steps:
+      - name: run-ghrs
+        uses: jgehrcke/github-repo-stats@RELEASE
+        with:
+          repository: ${{ matrix.statsRepo }}
+          ghtoken: ${{ secrets.ghrs_github_api_token }}
+          databranch: main
+
