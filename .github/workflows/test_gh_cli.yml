@@ -11,7 +11,7 @@ jobs:
         run: gh --version
 
       - name: List Public Non-Fork Repositories
-        run: |
-          gh repo list --json nameWithOwner,visibility,isFork -q '[.[] | select(.visibility=="PUBLIC" and .isFork==false) | .nameWithOwner]'
         env:
           GH_TOKEN: ${{ github.token }}  # Set GH_TOKEN to use github.token for GitHub CLI
+        run: |
+          gh repo list --json nameWithOwner,visibility,isFork -q '[.[] | select(.visibility=="PUBLIC" and .isFork==false) | .nameWithOwner]'
