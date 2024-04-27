@@ -1,0 +1,15 @@
+name: Test GitHub CLI Availability
+
+on:
+  workflow_dispatch:  # This allows you to trigger the action manually from GitHub UI
+
+jobs:
+  test-gh-cli:
+    runs-on: ubuntu-latest  # You can choose other runners like windows-latest or macos-latest if needed
+    steps:
+      - name: Check GitHub CLI installation
+        run: gh --version
+
+      - name: List Public Non-Fork Repositories
+        run: |
+          gh repo list --json nameWithOwner,visibility,isFork -q '[.[] | select(.visibility=="PUBLIC" and .isFork==false) | .nameWithOwner]'
