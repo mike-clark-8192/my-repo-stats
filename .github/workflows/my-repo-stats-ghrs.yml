@@ -28,6 +28,7 @@ jobs:
     name: my-repo-stats-ghrs
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 1
       matrix: 
         statsRepo: ${{ fromJson(needs.fetch-repos.outputs.repos) }}
       fail-fast: false
