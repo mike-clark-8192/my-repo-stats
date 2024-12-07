@@ -1,5 +1,5 @@
 % Statistics for mike-clark-8192/ExecInExplorer
-% Generated for [mike-clark-8192/ExecInExplorer](https://github.com/mike-clark-8192/ExecInExplorer) with [jgehrcke/github-repo-stats](https://github.com/jgehrcke/github-repo-stats) at 2024-11-30 10:06 UTC.
+% Generated for [mike-clark-8192/ExecInExplorer](https://github.com/mike-clark-8192/ExecInExplorer) with [jgehrcke/github-repo-stats](https://github.com/jgehrcke/github-repo-stats) at 2024-12-07 10:07 UTC.
 
 
 ## Views
