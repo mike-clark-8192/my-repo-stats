@@ -1,5 +1,5 @@
 % Statistics for mike-clark-8192/use-edit-distance-js
-% Generated for [mike-clark-8192/use-edit-distance-js](https://github.com/mike-clark-8192/use-edit-distance-js) with [jgehrcke/github-repo-stats](https://github.com/jgehrcke/github-repo-stats) at 2025-07-26 10:06 UTC.
+% Generated for [mike-clark-8192/use-edit-distance-js](https://github.com/mike-clark-8192/use-edit-distance-js) with [jgehrcke/github-repo-stats](https://github.com/jgehrcke/github-repo-stats) at 2025-08-02 10:06 UTC.
 
 
 ## Views
