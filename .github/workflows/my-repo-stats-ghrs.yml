@@ -7,36 +7,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch-repos:
+  fetch-and-process-repos:
     runs-on: ubuntu-latest
-    outputs:
-      repos: ${{ steps.fetch-repos.outputs.repos }}
     steps:
-      - name: Fetch owned non-fork repos
+      - name: Fetch owned non-fork public repos
         id: fetch-repos
         env:
-          GH_TOKEN: ${{ secrets.ghrs_github_api_token  }}  # Set GH_TOKEN to use github.token for GitHub CLI
+          GH_TOKEN: ${{ secrets.ghrs_github_api_token }}
         run: |
           set -x -e
           echo 'Fetching repositories...'
           REPOS=$(gh repo list --json nameWithOwner,visibility,isFork -q '[.[] | select(.visibility=="PUBLIC" and .isFork==false) | .nameWithOwner]')
           echo "repos=$REPOS" >> "$GITHUB_OUTPUT"
-          cat "$GITHUB_OUTPUT"
+          echo "Found repositories:"
+          echo "$REPOS" | jq -r '.[]'
 
-  run-ghrs-with-matrix:
-    needs: fetch-repos
-    name: my-repo-stats-ghrs
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      matrix: 
-        statsRepo: ${{ fromJson(needs.fetch-repos.outputs.repos) }}
-      fail-fast: false
-    steps:
-      - name: run-ghrs
-        uses: jgehrcke/github-repo-stats@RELEASE
+      - name: Run github-repo-stats for all repositories
+        uses: mike-clark-8192/github-repo-stats@claude/access-my-repo-stats-011CUxngxkLgmKuvL1hdhzFo
         with:
-          repository: ${{ matrix.statsRepo }}
+          repositories: ${{ steps.fetch-repos.outputs.repos }}
           ghtoken: ${{ secrets.ghrs_github_api_token }}
           databranch: main
+          ghpagesprefix: https://mike-clark-8192.github.io/my-repo-stats
+          ghpagesdirectory: site
 
