@@ -17,10 +17,11 @@ jobs:
         run: |
           set -x -e
           echo 'Fetching repositories...'
-          REPOS=$(gh repo list --json nameWithOwner,visibility,isFork -q '[.[] | select(.visibility=="PUBLIC" and .isFork==false) | .nameWithOwner]')
+          REPOS=$(gh repo list --limit 1000 --json nameWithOwner,visibility,isFork -q '[.[] | select(.visibility=="PUBLIC" and .isFork==false) | .nameWithOwner]')
           echo "repos=$REPOS" >> "$GITHUB_OUTPUT"
           echo "Found repositories:"
           echo "$REPOS" | jq -r '.[]'
+          echo "Total count: $(echo "$REPOS" | jq -r '. | length')"
 
       - name: Run github-repo-stats for all repositories
         uses: mike-clark-8192/github-repo-stats@claude/access-my-repo-stats-011CUxngxkLgmKuvL1hdhzFo
