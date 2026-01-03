@@ -24,7 +24,7 @@ jobs:
           echo "Total count: $(echo "$REPOS" | jq -r '. | length')"
 
       - name: Run github-repo-stats for all repositories
-        uses: mike-clark-8192/github-repo-stats@claude/access-my-repo-stats-011CUxngxkLgmKuvL1hdhzFo
+        uses: mike-clark-8192/github-repo-stats@main
         with:
           repositories: ${{ steps.fetch-repos.outputs.repos }}
           ghtoken: ${{ secrets.ghrs_github_api_token }}
