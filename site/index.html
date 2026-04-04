@@ -285,6 +285,52 @@
       opacity: 1;
     }
 
+    /* Sparkline wrap (positions axis labels) */
+    .sparkline-wrap {
+      position: relative;
+    }
+
+    .axis-label {
+      display: none;
+      position: absolute;
+      right: 2px;
+      font-size: 0.65rem;
+      color: var(--brown-light);
+      opacity: 0.7;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .axis-max {
+      top: 0;
+    }
+
+    .axis-min {
+      bottom: 0;
+    }
+
+    /* Clickable charts */
+    .chart-section[data-has-data] {
+      cursor: pointer;
+    }
+
+    /* Expanded state */
+    .card.expanded .card-body {
+      display: block;
+    }
+
+    .card.expanded .chart-section:not(.expanded) {
+      display: none;
+    }
+
+    .card.expanded .chart-section.expanded .sparkline {
+      height: 80px;
+    }
+
+    .card.expanded .chart-section.expanded .axis-label {
+      display: block;
+    }
+
     /* Footer */
     .dashboard-footer {
       text-align: center;
@@ -313,12 +359,12 @@
           <span class="header-stat-label">views (14d)</span>
         </div>
         <div class="header-stat">
-          <span class="header-stat-value">82</span>
+          <span class="header-stat-value">117</span>
           <span class="header-stat-label">clones (14d)</span>
         </div>
         <div class="header-sparkline">
           <span class="header-stat-label">traffic trend</span>
-          <svg viewBox="0 0 200 40" class="sparkline"><polyline points="0.0,36.0 16.7,36.0 33.3,36.0 50.0,36.0 66.7,36.0 83.3,36.0 100.0,36.0 116.7,36.0 133.3,36.0 150.0,36.0 166.7,36.0 183.3,36.0 200.0,36.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,30.7 16.7,34.9 33.3,32.8 50.0,30.7 66.7,30.7 83.3,31.7 100.0,23.2 116.7,33.9 133.3,33.9 150.0,4.0 166.7,30.7 183.3,36.0 200.0,27.5" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 200 40" class="sparkline"><polyline points="0.0,36.0 16.7,36.0 33.3,36.0 50.0,36.0 66.7,36.0 83.3,36.0 100.0,36.0 116.7,36.0 133.3,36.0 150.0,36.0 166.7,36.0 183.3,36.0 200.0,36.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,33.9 16.7,33.9 33.3,4.0 50.0,30.7 66.7,36.0 83.3,27.5 100.0,22.1 116.7,27.5 133.3,28.5 150.0,5.1 166.7,31.7 183.3,31.7 200.0,30.7" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </div>
     </div>
@@ -335,17 +381,23 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,4.0 80.0,4.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">1</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 1</span>
+              <span class="clones">📋 4</span>
             </div>
           </div>
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0" fill="none" stroke="#e8b923" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0" fill="none" stroke="#e8b923" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">4</span><span class="axis-label axis-min">4</span>
+            </div>
             <div class="chart-stats">
               <span class="growth positive">+1 stars</span>
             </div>
@@ -365,17 +417,59 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,24.6 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,21.1 60.0,4.0 70.0,24.6 80.0,28.0 90.0,21.1 100.0,24.6 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,25.0 10.0,28.0 20.0,22.0 30.0,25.0 40.0,28.0 50.0,28.0 60.0,4.0 70.0,19.0 80.0,25.0 90.0,25.0 100.0,28.0 110.0,25.0 120.0,25.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">8</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 14</span>
+              <span class="clones">📋 19</span>
             </div>
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
+            <div class="chart-stats">
+              <span class="neutral">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="wt-settings-tool/" class="card-link">
+      <div class="card">
+        <div class="card-header">
+          <span class="repo-name">wt-settings-tool</span>
+          <span class="repo-stats">
+            <span class="stat">⭐ 0</span>
+            <span class="stat">🍴 0</span>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="chart-section" data-has-data="1">
+            <div class="chart-label">Traffic <span class="period">(14d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,4.0 40.0,28.0 50.0,28.0 60.0,4.0 70.0,4.0 80.0,4.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">1</span><span class="axis-label axis-min">0</span>
+            </div>
+            <div class="chart-stats">
+              <span class="views">👁 0</span>
+              <span class="clones">📋 6</span>
+            </div>
+          </div>
+          <div class="chart-section">
+            <div class="chart-label">Growth <span class="period">(90d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><line x1="0" y1="28" x2="120" y2="28" stroke="#ddd" stroke-width="1"/></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -395,17 +489,59 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,4.0 110.0,28.0 120.0,4.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,4.0 40.0,28.0 50.0,4.0 60.0,4.0 70.0,28.0 80.0,4.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">1</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 3</span>
+              <span class="clones">📋 6</span>
             </div>
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
+            <div class="chart-stats">
+              <span class="neutral">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="ccccc/" class="card-link">
+      <div class="card">
+        <div class="card-header">
+          <span class="repo-name">ccccc</span>
+          <span class="repo-stats">
+            <span class="stat">⭐ 0</span>
+            <span class="stat">🍴 0</span>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="chart-section" data-has-data="1">
+            <div class="chart-label">Traffic <span class="period">(14d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,16.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,4.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
+            <div class="chart-stats">
+              <span class="views">👁 0</span>
+              <span class="clones">📋 6</span>
+            </div>
+          </div>
+          <div class="chart-section">
+            <div class="chart-label">Growth <span class="period">(90d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -425,17 +561,23 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,16.0 10.0,28.0 20.0,4.0 30.0,16.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,16.0 80.0,28.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 6</span>
+              <span class="clones">📋 4</span>
             </div>
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -455,17 +597,23 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,4.0 50.0,28.0 60.0,4.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,4.0 80.0,4.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">1</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 3</span>
+              <span class="clones">📋 4</span>
             </div>
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -485,17 +633,23 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,4.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,4.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,16.0 30.0,28.0 40.0,28.0 50.0,16.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 3</span>
+              <span class="clones">📋 4</span>
             </div>
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -515,9 +669,12 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,16.0 70.0,16.0 80.0,28.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,4.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,16.0 10.0,28.0 20.0,16.0 30.0,28.0 40.0,28.0 50.0,4.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
               <span class="clones">📋 5</span>
@@ -525,7 +682,10 @@
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -545,17 +705,23 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,4.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,4.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,4.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">1</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 4</span>
+              <span class="clones">📋 3</span>
             </div>
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -575,9 +741,48 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,4.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,16.0 30.0,28.0 40.0,28.0 50.0,4.0 60.0,16.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
+            <div class="chart-stats">
+              <span class="views">👁 0</span>
+              <span class="clones">📋 6</span>
+            </div>
+          </div>
+          <div class="chart-section">
+            <div class="chart-label">Growth <span class="period">(90d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
+            <div class="chart-stats">
+              <span class="neutral">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="EditPadToolHelper/" class="card-link">
+      <div class="card">
+        <div class="card-header">
+          <span class="repo-name">EditPadToolHelper</span>
+          <span class="repo-stats">
+            <span class="stat">⭐ 0</span>
+            <span class="stat">🍴 0</span>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="chart-section" data-has-data="1">
+            <div class="chart-label">Traffic <span class="period">(14d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,4.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">1</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
               <span class="clones">📋 3</span>
@@ -585,7 +790,46 @@
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
+            <div class="chart-stats">
+              <span class="neutral">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="opengrok-setup-win/" class="card-link">
+      <div class="card">
+        <div class="card-header">
+          <span class="repo-name">opengrok-setup-win</span>
+          <span class="repo-stats">
+            <span class="stat">⭐ 0</span>
+            <span class="stat">🍴 0</span>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="chart-section" data-has-data="1">
+            <div class="chart-label">Traffic <span class="period">(14d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,16.0 70.0,16.0 80.0,28.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
+            <div class="chart-stats">
+              <span class="views">👁 0</span>
+              <span class="clones">📋 5</span>
+            </div>
+          </div>
+          <div class="chart-section">
+            <div class="chart-label">Growth <span class="period">(90d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -605,9 +849,12 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,4.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,16.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,16.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,16.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
               <span class="clones">📋 5</span>
@@ -615,7 +862,46 @@
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
+            <div class="chart-stats">
+              <span class="neutral">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="webpack-type-declarations/" class="card-link">
+      <div class="card">
+        <div class="card-header">
+          <span class="repo-name">webpack-type-declarations</span>
+          <span class="repo-stats">
+            <span class="stat">⭐ 0</span>
+            <span class="stat">🍴 0</span>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="chart-section" data-has-data="1">
+            <div class="chart-label">Traffic <span class="period">(14d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,16.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,16.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
+            <div class="chart-stats">
+              <span class="views">👁 0</span>
+              <span class="clones">📋 4</span>
+            </div>
+          </div>
+          <div class="chart-section">
+            <div class="chart-label">Growth <span class="period">(90d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -635,9 +921,12 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,16.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,16.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,16.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
               <span class="clones">📋 4</span>
@@ -645,7 +934,10 @@
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -665,9 +957,12 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,16.0 40.0,4.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,16.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,16.0 100.0,4.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
               <span class="clones">📋 4</span>
@@ -675,7 +970,10 @@
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -695,17 +993,23 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,4.0 50.0,4.0 60.0,4.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,4.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,16.0 30.0,16.0 40.0,28.0 50.0,28.0 60.0,16.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,4.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 5</span>
+              <span class="clones">📋 7</span>
             </div>
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -725,17 +1029,23 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,4.0 10.0,4.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,16.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,16.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 3</span>
+              <span class="clones">📋 4</span>
             </div>
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -755,9 +1065,12 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,4.0 40.0,4.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,4.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">1</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
               <span class="clones">📋 3</span>
@@ -765,7 +1078,10 @@
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -785,17 +1101,59 @@
           </span>
         </div>
         <div class="card-body">
-          <div class="chart-section">
+          <div class="chart-section" data-has-data="1">
             <div class="chart-label">Traffic <span class="period">(14d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,16.0 90.0,4.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,16.0 20.0,4.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,16.0 100.0,28.0 110.0,28.0 120.0,16.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
             <div class="chart-stats">
               <span class="views">👁 0</span>
-              <span class="clones">📋 3</span>
+              <span class="clones">📋 5</span>
             </div>
           </div>
           <div class="chart-section">
             <div class="chart-label">Growth <span class="period">(90d)</span></div>
-            <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
+            <div class="chart-stats">
+              <span class="neutral">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="fdictgrep/" class="card-link">
+      <div class="card">
+        <div class="card-header">
+          <span class="repo-name">fdictgrep</span>
+          <span class="repo-stats">
+            <span class="stat">⭐ 0</span>
+            <span class="stat">🍴 0</span>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="chart-section" data-has-data="1">
+            <div class="chart-label">Traffic <span class="period">(14d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><polyline points="0.0,28.0 10.0,28.0 20.0,28.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,28.0 100.0,28.0 110.0,28.0 120.0,28.0" fill="none" stroke="#c95d2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="0.0,28.0 10.0,28.0 20.0,16.0 30.0,28.0 40.0,28.0 50.0,28.0 60.0,28.0 70.0,28.0 80.0,28.0 90.0,4.0 100.0,16.0 110.0,28.0 120.0,28.0" fill="none" stroke="#d4a03c" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="axis-label axis-max">2</span><span class="axis-label axis-min">0</span>
+            </div>
+            <div class="chart-stats">
+              <span class="views">👁 0</span>
+              <span class="clones">📋 4</span>
+            </div>
+          </div>
+          <div class="chart-section">
+            <div class="chart-label">Growth <span class="period">(90d)</span></div>
+            <div class="sparkline-wrap">
+              <svg viewBox="0 0 120 32" class="sparkline"><text x="60" y="20" text-anchor="middle" fill="#999" font-size="10">no data</text></svg>
+              
+            </div>
             <div class="chart-stats">
               <span class="neutral">—</span>
             </div>
@@ -819,68 +1177,31 @@
       </div>
     </a>
     
-
-    <a href="wt-settings-tool/" class="cricket-link">
-      <div class="cricket-card">
-        <span class="cricket-name">wt-settings-tool</span>
-        <span class="cricket-stats">⭐ 0</span>
-        <span class="cricket-arrow">→</span>
-      </div>
-    </a>
-    
-
-    <a href="ccccc/" class="cricket-link">
-      <div class="cricket-card">
-        <span class="cricket-name">ccccc</span>
-        <span class="cricket-stats">⭐ 0</span>
-        <span class="cricket-arrow">→</span>
-      </div>
-    </a>
-    
-
-    <a href="EditPadToolHelper/" class="cricket-link">
-      <div class="cricket-card">
-        <span class="cricket-name">EditPadToolHelper</span>
-        <span class="cricket-stats">⭐ 0</span>
-        <span class="cricket-arrow">→</span>
-      </div>
-    </a>
-    
-
-    <a href="opengrok-setup-win/" class="cricket-link">
-      <div class="cricket-card">
-        <span class="cricket-name">opengrok-setup-win</span>
-        <span class="cricket-stats">⭐ 0</span>
-        <span class="cricket-arrow">→</span>
-      </div>
-    </a>
-    
-
-    <a href="webpack-type-declarations/" class="cricket-link">
-      <div class="cricket-card">
-        <span class="cricket-name">webpack-type-declarations</span>
-        <span class="cricket-stats">⭐ 0</span>
-        <span class="cricket-arrow">→</span>
-      </div>
-    </a>
-    
-
-    <a href="fdictgrep/" class="cricket-link">
-      <div class="cricket-card">
-        <span class="cricket-name">fdictgrep</span>
-        <span class="cricket-stats">⭐ 0</span>
-        <span class="cricket-arrow">→</span>
-      </div>
-    </a>
-    
       </div>
     </div>
     
 
     <div class="dashboard-footer">
-      Last updated: 2026-03-28 10:06 UTC · 23 repositories
+      Last updated: 2026-04-04 10:07 UTC · 23 repositories
     </div>
   </div>
+  <script>
+    document.querySelectorAll('.chart-section[data-has-data]').forEach(function(sec) {
+      sec.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var card = sec.closest('.card');
+        if (card.classList.contains('expanded') && sec.classList.contains('expanded')) {
+          card.classList.remove('expanded');
+          sec.classList.remove('expanded');
+        } else {
+          card.querySelectorAll('.chart-section').forEach(function(s) { s.classList.remove('expanded'); });
+          card.classList.add('expanded');
+          sec.classList.add('expanded');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
 
